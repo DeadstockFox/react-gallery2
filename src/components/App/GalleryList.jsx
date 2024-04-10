@@ -26,17 +26,15 @@ function GalleryList() {
 
     return(
 
-        <>
+        <section data-testid="galleryList" style={{display: "flex", flexWrap: "Wrap", justifyContent: "space-evenly"}}>
         {
         images.map((image) => {
             return <div key={image.id}>
-            <br/>
             <GalleryItem image={image} getGallery={getGallery}/>
-            <br/>
             </div>
         })
         }
-        </>
+        </section>
 
 
 
