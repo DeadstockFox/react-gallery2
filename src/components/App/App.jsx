@@ -10,6 +10,7 @@ function App() {
 
         <p style={{fontSize: "30px", fontFamily: "Roboto", color: "red",
          fontWeight: "bold", textAlign: "center"}}>Trip to Disney 2023</p>
+         
         <GalleryList/>
       </div>
     );

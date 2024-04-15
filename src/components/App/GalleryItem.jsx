@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function GalleryItem({image, getGallery}) {
 
-    const [descShow, setDescShow] = useState(false);
+    const [descShow, setDescShow] = useState(true);
     
     const toggle = (id) => {
         axios.put(`api//gallery/like/${id}`).then((r) => {
@@ -16,41 +16,30 @@ function GalleryItem({image, getGallery}) {
 
 
     const Item = () => {
-
-        if (descShow === false) {
-          return <section data-testid="galleryItem">
-
-          <p style={{marginBottom: "0px", textAlign: "center", fontSize: "25px"}}>{image.title}</p>
-          <br/>
-
-          <img data-testid="toggle" onClick={() => setDescShow(!descShow)} src={image.url} style={{width: "300px", height: "300px"}}/>
-          <br/>
-
-          <button data-testid="like" onClick={()=> toggle(image.id)} style={{marginRight: "6px"}}>Like</button>
-          {`Total Likes: ${image.likes}`}
-          </section>
-          }
-        else if (descShow === true) {
-            return <section data-testid="galleryItem">
-
-            <p style={{marginBottom: "0px", textAlign: "center", fontSize: "25px"}}>{image.title}</p>
-            <br/>
-
-            <div data-testid="toggle" onClick={() => setDescShow(!descShow)} style={{width: "300px", height: "300px", backgroundColor: "lightcyan"}}>
+       //console.log(descShow);
+        return (
+        descShow 
+       ?     <>
+             <img data-testid="toggle" onClick={() => setDescShow(!descShow)} src={image.url} style={{width: "300px", height: "300px"}}/>
+             <br/>
+             </>
+       
+       :     <p data-testid="toggle" onClick={() => setDescShow(!descShow)} style={{width: "300px", height: "300px", backgroundColor: "lightcyan", marginTop: "0px", marginBottom: "4px"}}>
             {image.description}
-            </div>
-            <br/>
+             </p>
+        )};
 
-            <button data-testid="like" onClick={()=> toggle(image.id)} style={{marginRight: "6px"}}>Like</button>
+        
+
+    return( 
+
+         <section data-testid="galleryItem">
+           <p style={{marginBottom: "0px", textAlign: "center", fontSize: "25px"}}>{image.title}</p>
+           <br/>
+           <Item />
+           <button data-testid="like" onClick={()=> toggle(image.id)} style={{marginRight: "6px"}}>Like</button>
             {`Total Likes: ${image.likes}`}
-            </section>
-        };
-    }
-
-    return(
-        <>
-         <Item descShow={descShow}/>
-        </>
+         </section>
 
     )
 

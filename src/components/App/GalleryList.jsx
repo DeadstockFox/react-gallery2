@@ -5,8 +5,8 @@ import GalleryItem from './GalleryItem.jsx';
 
 
 function GalleryList() {
-    const [images, setImages] = useState([]);
 
+    const [images, setImages] = useState([]);
 
     const getGallery = () => {
         axios.get('api/gallery').then((r) => {  
